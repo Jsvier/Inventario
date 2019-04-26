@@ -1,17 +1,15 @@
-# Demo i application in ASP.NET Core 2.0
+# Demo  application in ASP.NET Core 2.0
 
-This project is the output of **[The Little ASP.NET Core Book](http://littleasp.net/book)**, a short tutorial that teaches you how to build applications using ASP.NET Core.
+proyecto de pruebas de ASP.NET Core con jwt, oracle client , pruebas unitarias y pruebas de integracion.
 
-## Try it out
+## Demo
 
-Make sure you have the [.NET Core SDK](https://www.microsoft.com/net/download/macos) installed on your machine. Then do:
 
-```
-git clone https://github.com/nbarbettini/little-aspnetcore-todo.git
-cd little-aspnetcore-todo
+``` comando dotnet
+dotnet add package Swashbuckle.AspNetCore
+dotnet add package Dapper -Version 1.50.5
+dotnet add package Oracle.ManagedDataAccess.Core
+dotnet add package Microsoft.AspNetCore.Mvc.DataAnnotations --version 2.2.0
+dotnet add package JWT --version 5.0.1
 dotnet run
 ```
-
-## Questions? Comments?
-
-If you run into trouble, feel free to [file an issue](https://github.com/nbarbettini/little-aspnetcore-todo/issues) here on Github.
