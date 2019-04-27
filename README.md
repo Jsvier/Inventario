@@ -1,9 +1,8 @@
-# Demo  application in ASP.NET Core 2.0
+# Demo sobre ASP.NET Core 2.0 para redhat
 
-proyecto de pruebas de ASP.NET Core con jwt, oracle client , pruebas unitarias y pruebas de integracion.
+proyecto de pruebas de ASP.NET Core con jwt, oracle client , pruebas unitarias y pruebas de integracion sobre docker.
 
 ## Demo
-
 
 ``` comando dotnet
 inventory/
