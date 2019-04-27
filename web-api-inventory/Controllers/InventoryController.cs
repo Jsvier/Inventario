@@ -1,8 +1,6 @@
-using Core2API.Repositories;  
+using api_inventory.Repositories;  
 using Microsoft.AspNetCore.Mvc; 
-using Core2API.Model;
-using Core2API.Repositories; 
-
+using api_inventory.Model;
   
 namespace api_inventory.Controllers  
 {  

@@ -1,4 +1,4 @@
-namespace Core2API.Model
+namespace api_inventory.Model
 {
  public interface IRepository  
     {  

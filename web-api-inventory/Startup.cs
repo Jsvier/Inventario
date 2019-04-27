@@ -15,10 +15,9 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using api_inventory.Helpers;
 using api_inventory.Services;
-using Core2API.Model;
-using Core2API.Repositories;  
+using api_inventory.Model;
+using api_inventory.Repositories;  
 using System.Text;
-
 
 
 namespace api_inventory

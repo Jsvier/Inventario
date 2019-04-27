@@ -15,7 +15,8 @@ namespace WebApi.IntegrationTests
         public TestFixture()
         {
             var builder = new WebHostBuilder()
-                .UseStartup<web-api-inventory.Startup>()
+            
+                .UseStartup<api_inventory.Startup>()
                 .ConfigureAppConfiguration((context, configBuilder) =>
                 {
                     configBuilder.SetBasePath(Path.Combine(

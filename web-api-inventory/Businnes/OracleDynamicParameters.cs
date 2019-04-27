@@ -3,7 +3,7 @@ using Oracle.ManagedDataAccess.Client;
 using System.Collections.Generic;  
 using System.Data;  
   
-namespace Core2API.Oracle  
+namespace api_inventory.Oracle  
 {  
     public class OracleDynamicParameters : SqlMapper.IDynamicParameters  
     {  

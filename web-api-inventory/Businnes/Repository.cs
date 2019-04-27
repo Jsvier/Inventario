@@ -1,5 +1,5 @@
-using Core2API.Model;
-using Core2API.Oracle;
+using api_inventory.Model;
+using api_inventory.Oracle;
 using Dapper;  
 using Microsoft.Extensions.Configuration;  
 using Oracle.ManagedDataAccess.Client;  
@@ -7,7 +7,7 @@ using System;
 using System.Data;  
   
 
-namespace Core2API.Repositories  
+namespace api_inventory.Repositories  
 {  
     public class Repository : IRepository  
     {  
