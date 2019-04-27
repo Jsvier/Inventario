@@ -1,7 +1,8 @@
 using api_inventory.Repositories;  
 using Microsoft.AspNetCore.Mvc; 
 using api_inventory.Model;
-  
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 namespace api_inventory.Controllers  
 {  
     [Produces("application/json")]      
