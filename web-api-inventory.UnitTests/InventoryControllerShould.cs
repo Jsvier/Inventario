@@ -1,88 +1,72 @@
-using System;
-using System.Security.Claims;
+using System.Net;
 using System.Threading.Tasks;
-using api_inventory.Controllers;
-using api_inventory.Model;
-using api_inventory.Models;
-using api_inventory.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using NSubstitute;
+//using AngleSharp.Dom.Html;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+//using RazorPagesProject.Services;
+//using RazorPagesProject.Tests.Helpers;
 
 namespace api_inventory.UnitTests
 {
-    public class InventoryControllerShould
+    public class InventoryControllerShould : IClassFixture<WebApplicationFactory<api_inventory.Startup>>
     {
+        private readonly WebApplicationFactory<api_inventory.Startup> _factory;
+
+        public InventoryControllerShould(WebApplicationFactory<api_inventory.Startup> factory)
+        {
+            _factory = factory;
+        }
+
         [Fact]
         public async Task ReturnGoodRequest_Version()
         {
-            // Arrange
-            var mockInventoryService = Substitute.For<IRepository>();
+               // Arrange
+            var client = _factory.CreateClient(
+                new WebApplicationFactoryClientOptions
+                {
+                    AllowAutoRedirect = false
+                });
 
-             var controller = new InventoryController(mockInventoryService);
+            // Act
+            var response = await client.GetAsync("/api/Version");
 
-             // Act
-             var result =  controller.Version();
-             
-             var statusCodeResult = result as StatusCodeResult;
+            // Assert
+            Assert.NotNull(response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-             // Assert
-             Assert.NotNull(statusCodeResult);
-             Assert.Equal(200, statusCodeResult.StatusCode);
         }
         
         [Fact]
         public async Task ReturnGoodRequest_Store()
         {
-            // Arrange
-            var mockInventoryService = Substitute.For<IRepository>();
+            
+               // Arrange
+            var client = _factory.CreateClient(
+                new WebApplicationFactoryClientOptions
+                {
+                    AllowAutoRedirect = false
+                });
 
-             var controller = new InventoryController(mockInventoryService);
+            // Act
+            var response = await client.GetAsync("/api/Store");
 
-             // Act
-             var result =  controller.Store();
-             
-             var statusCodeResult = result as StatusCodeResult;
-
-             // Assert
-             Assert.NotNull(statusCodeResult);
-             Assert.Equal(200, statusCodeResult.StatusCode);
+            // Assert
+            Assert.NotNull(response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
         
 
         [Fact]
         public async Task ReturnSuccess_Inventories()
         {
-            // Arrange
-            var mockInventoryService = Substitute.For<IRepository>();
-            // var mockInventoryManager = MockUserManager.Create();
-
-            // // Make the mockInventoryManager return a fake user
-            // var fakeUser = new ApplicationUser();
-            // mockInventoryManager.GetUserAsync(Arg.Any<ClaimsPrincipal>())
-            //     .Returns(Task.FromResult(fakeUser));
-
-            // // Make the mockInventoryService always succeed
-            // mockInventoryService.MarkDoneAsync(Arg.Any<Guid>(), Arg.Any<ApplicationUser>())
-            //     .Returns(Task.FromResult(true));
-
-            // var controller = new TodoController(mockInventoryService, mockInventoryManager);
-
-            // // Act
-            // var randomId = Guid.NewGuid();
-            // var result = await controller.MarkDone(randomId);
-            // var statusCodeResult = result as StatusCodeResult;
-
-            // // Assert
-            // Assert.NotNull(statusCodeResult);
-            // Assert.Equal(200, statusCodeResult.StatusCode);
+            
         }
         [Fact]
         public async Task ReturnSuccess_Inventory_ByID()
         {
-            // Arrange
-            var mockInventoryService = Substitute.For<IRepository>();
+
         }
     }
 }
