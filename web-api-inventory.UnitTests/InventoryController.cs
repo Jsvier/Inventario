@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 //using AngleSharp.Dom.Html;
@@ -10,11 +11,11 @@ using Xunit;
 
 namespace api_inventory.UnitTests
 {
-    public class InventoryControllerShould : IClassFixture<WebApplicationFactory<api_inventory.Startup>>
+    public class InventoryController : IClassFixture<WebApplicationFactory<api_inventory.Startup>>
     {
         private readonly WebApplicationFactory<api_inventory.Startup> _factory;
 
-        public InventoryControllerShould(WebApplicationFactory<api_inventory.Startup> factory)
+        public InventoryController(WebApplicationFactory<api_inventory.Startup> factory)
         {
             _factory = factory;
         }
@@ -41,7 +42,6 @@ namespace api_inventory.UnitTests
         [Fact]
         public async Task ReturnGoodRequest_Store()
         {
-            
                // Arrange
             var client = _factory.CreateClient(
                 new WebApplicationFactoryClientOptions
@@ -50,11 +50,12 @@ namespace api_inventory.UnitTests
                 });
 
             // Act
-            var response = await client.GetAsync("/api/Store");
+            var response = await client.GetAsync("/api/Store  ");
 
             // Assert
             Assert.NotNull(response.StatusCode);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    
         }
         
 
@@ -63,6 +64,7 @@ namespace api_inventory.UnitTests
         {
             
         }
+
         [Fact]
         public async Task ReturnSuccess_Inventory_ByID()
         {
