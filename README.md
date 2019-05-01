@@ -34,6 +34,8 @@ inventory/
             dotnet test
     docker
         docker build -t web-api-inventory .
-        docker run --name web-api-inventory-developer --rm -it -p 8080:80 web-api-inventory
+        docker run --name web-api-inventory --rm -it -p 8080:80 web-api-inventory
         docker-compose up
 ```
+
+dotnet new webapp
