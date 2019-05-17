@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using Hystrix.Dotnet.AspNetCore;
+using Hystrix.Dotnet;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,11 +39,14 @@ namespace api_inventory
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-              services.AddCors();
-       
+            services.AddCors();
+            
             services.AddTransient<IRepository, Repository>();  
             services.AddSingleton<IConfiguration>(Configuration);  
-           
+   
+            services.AddHystrix();
+            services.Configure<HystrixOptions>(options => Configuration.GetSection("Hystrix").Bind(options));
+
            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -124,6 +132,7 @@ namespace api_inventory
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseHystrixMetricsEndpoint("hystrix.stream");
         }
     }
 }

@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.60.9" />
+    <PackageReference Include="Hystrix.Dotnet" Version="1.1.0-beta1" />
+    <PackageReference Include="Hystrix.Dotnet.AspNetCore" Version="1.0.4" />
     <PackageReference Include="JWT" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.2.0" />
