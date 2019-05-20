@@ -27,7 +27,7 @@ namespace WebApi.IntegrationTests
             _server = new TestServer(builder);
 
             Client = _server.CreateClient();
-            Client.BaseAddress = new Uri("http://localhost:5001");
+            Client.BaseAddress = new Uri("http://localhost:5000");
         }
 
         public HttpClient Client { get; }

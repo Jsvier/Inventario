@@ -13,8 +13,8 @@ inventory/
             dotnet add package Oracle.ManagedDataAccess.Core
             dotnet add package Microsoft.AspNetCore.Mvc.DataAnnotations --version 2.2.0
             dotnet add package JWT --version 5.0.1
-            dotnet add package Hystrix.Dotnet --version 1.0.4
-            dotnet add package Hystrix.Dotnet.AspNetCore --version 1.0.4
+            dotnet add package Steeltoe.CircuitBreaker.Hystrix
+            dotnet add package Steeltoe.CircuitBreaker.Hystrix.MetricsEvents
             dotnet run
     web-api-inventory.UnitTests/
             web-api-inventory.UnitTests.csproj

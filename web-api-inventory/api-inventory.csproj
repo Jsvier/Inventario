@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.60.9" />
-    <PackageReference Include="Hystrix.Dotnet" Version="1.1.0-beta1" />
-    <PackageReference Include="Hystrix.Dotnet.AspNetCore" Version="1.0.4" />
     <PackageReference Include="JWT" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.18.6" />
+    <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix" Version="1.1.0" />
+    <PackageReference Include="Steeltoe.CircuitBreaker.Hystrix.MetricsEvents" Version="1.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 

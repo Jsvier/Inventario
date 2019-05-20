@@ -25,7 +25,7 @@ namespace WebApi.IntegrationTests
 
             // Assert: anonymous user
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Equal("http://localhost:5001/api/Version",
+            Assert.Equal("http://localhost:5000/api/Version",
                         response.Headers.Location.ToString());
         }
     }

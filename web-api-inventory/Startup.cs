@@ -2,8 +2,6 @@
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using Hystrix.Dotnet.AspNetCore;
-using Hystrix.Dotnet;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using Steeltoe.CircuitBreaker.Hystrix; //for metrics
 using api_inventory.Helpers;
 using api_inventory.Services;
 using api_inventory.Model;
@@ -43,9 +42,6 @@ namespace api_inventory
             
             services.AddTransient<IRepository, Repository>();  
             services.AddSingleton<IConfiguration>(Configuration);  
-   
-            services.AddHystrix();
-            services.Configure<HystrixOptions>(options => Configuration.GetSection("Hystrix").Bind(options));
 
            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -98,6 +94,12 @@ namespace api_inventory
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
 
+            //add QueryCommand to service container, and inject into controller so it gets config values
+            services.AddHystrixCommand<InventoryService>("InventoryGroup", Configuration);
+            
+            //added to get Metrics stream
+            services.AddHystrixMetricsStream(Configuration);
+
             services.AddMvc(); 
         }
 
@@ -132,7 +134,19 @@ namespace api_inventory
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
-            app.UseHystrixMetricsEndpoint("hystrix.stream");
+
+            //added
+            app.UseHystrixRequestContext();
+            
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}/{id?}");
+            });
+            
+            //added
+            app.UseHystrixMetricsStream();
         }
     }
 }
