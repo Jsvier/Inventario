@@ -20,9 +20,9 @@ namespace api_inventory.Controllers
         public IActionResult Index()
         {
             //call Hystrix-protected service
-            List<Recommendations> recommendations = rs.Execute();
+            NLS_Config nls_config = rs.Execute();
 
-            return Ok(recommendations);  
+            return Ok(nls_config);  
         }
 
         public IActionResult Error()

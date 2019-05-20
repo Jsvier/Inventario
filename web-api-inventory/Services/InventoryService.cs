@@ -11,34 +11,28 @@ using api_inventory.Models;
 namespace api_inventory.Services
 {
     //HystrixCommand means no result, HystrixCommand<string> means a string comes back
-    public class InventoryService: HystrixCommand<List<Recommendations>>
+    public class InventoryService: HystrixCommand<NLS_Config>
     {      
         public InventoryService(IHystrixCommandOptions options):base(options) {
         
         }
 
-        protected override List<Recommendations> Run()
+        protected override NLS_Config Run()
         {
             var client = new HttpClient();
-            var response = client.GetAsync("http://localhost:5000/api/recommendations").Result;
+            var response = client.GetAsync("http://localhost:5000/api/NLS_Config").Result;
 
-            var recommendations = response.Content.ReadAsAsync<List<Recommendations>>().Result;
+            var nls_config = response.Content.ReadAsAsync<NLS_Config>().Result;
 
-            return recommendations;
+            return nls_config;
         }
 
         //fails
-        protected override List<Recommendations> RunFallback()
+        protected override NLS_Config RunFallback()
         {
-            Recommendations r1 = new Recommendations();
-            r1.ProductId = "10007";
-            r1.ProductDescription = "Black Hat";
-            r1.ProductImage = "https://cdn.shopify.com/s/files/1/0692/5669/products/hatnew_1024x1024.png?v=1458082282";
-
-            List<Recommendations> recommendations = new List<Recommendations>();
-            recommendations.Add(r1);
-
-            return recommendations;
+            NLS_Config nls_config = new NLS_Config();
+            
+            return nls_config;
         }
     }
 }

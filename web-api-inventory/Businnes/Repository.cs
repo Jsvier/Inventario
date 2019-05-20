@@ -1,4 +1,5 @@
 using api_inventory.Model;
+using api_inventory.Models;
 using api_inventory.Oracle;
 using Dapper;  
 using Microsoft.Extensions.Configuration;  
@@ -106,6 +107,38 @@ namespace api_inventory.Repositories
                 throw ex;  
             }  
   
+            return result;  
+        }  
+  
+        public NLS_Config NLS_Config()  
+        {  
+            NLS_Config result = new NLS_Config(); 
+            try  
+            {  
+           // TODO:RELLENAR
+           //     var dyParam = new OracleDynamicParameters();  
+  
+           //     dyParam.Add("INVCURSOR", OracleDbType.RefCursor, ParameterDirection.Output);  
+  
+            //    var conn = this.GetConnection();  
+            //    if(conn.State == ConnectionState.Closed)  
+             //   {  
+             //       conn.Open();  
+            //    }  
+  
+            //    if (conn.State == ConnectionState.Open)  
+            //    {  
+            //        var query = "GETINVENTORIES";  
+  
+            //        result = SqlMapper.Query(conn, query, param: dyParam, commandType: CommandType.StoredProcedure);  
+             //   }  
+            }  
+            catch (Exception ex)  
+            {  
+                throw ex;  
+            }  
+            
+            result.NLS_LANGUAGE ="BLABLABLA"; 
             return result;  
         }  
   
