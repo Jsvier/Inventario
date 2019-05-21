@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;  
 using System;  
 using System.Data;  
-  
 
 namespace api_inventory.Repositories  
 {  

@@ -5,7 +5,6 @@ using api_inventory.Models;
 using api_inventory.Entities;
 using System.Collections.Generic;
 
-
 namespace api_inventory.Controllers
 {
   [Produces("application/json")]    

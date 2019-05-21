@@ -1,0 +1,16 @@
+# Dockerfile
+FROM wnameless/oracle-xe-11g
+MAINTAINER Javier Etchepare <gerardo.etchepare@gmail.com>
+
+RUN mkdir -p /docker-entrypoint-initdb.d
+
+copy ./sample.sql /dockntrypoint-initdb.d/init.sql
+
+RUN /usr/sbin/startup.sh
+RUN rm /docker-entrypoint-initdb.d/init.sql
+RUN service oracle-xe stop
+
+CMD /usr/sbin/startup.sh && touch /started && /usr/sbin/sshd -D
+
+# Volumes     
+VOLUME ["/docker-entrypoint-initdb.d"]

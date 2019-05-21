@@ -8,3 +8,8 @@ kestrel:
     build: .
     ports:
         - "80"
+oracle-db:
+    build: ./oracle-db
+     restart: always
+     ports:
+      - "1521:1521"
