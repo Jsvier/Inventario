@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using api_inventory.Services;
 using api_inventory.Models;
 using api_inventory.Entities;
@@ -19,7 +18,7 @@ namespace api_inventory.Controllers
         public IActionResult Index()
         {
             //call Hystrix-protected service
-            NLS_Config nls_config = rs.Execute();
+            List<Parameter> nls_config = rs.Execute();
 
             return Ok(nls_config);  
         }

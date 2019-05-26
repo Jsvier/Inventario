@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace api_inventory.Models
 {
-     public class NLS_Config {
+     public class Inventory {
          
-        public string NLS_LANGUAGE { get; set; }
-        public string NLS_TERRITORY { get; set; }
-        public string NLS_CURRENCY { get; set; }
-        public string NLS_ISO_CURRENCY { get; set; }
-        public string NLS_NUMERIC_CHARACTERS { get; set; }
-        public string NLS_DATE_FORMAT { get; set; }
+        public int INV_NO { get; set; }
+        public DateTime DATE_PLANNED { get; set; }
+        public int STORE_NO { get; set; }
+        public string TIPO { get; set; }
+        public string STATUS { get; set; }
+        public string DESCRIPCION { get; set; }
         public string NLS_DATE_LANGUAGE { get; set; }
         public string NLS_CHARACTERSET { get; set; }
         public string NLS_SORT { get; set; }

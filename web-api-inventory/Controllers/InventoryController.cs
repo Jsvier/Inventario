@@ -1,7 +1,12 @@
-using api_inventory.Repositories;  
-using Microsoft.AspNetCore.Mvc; 
-using api_inventory.Model;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using api_inventory.Services;
+using api_inventory.Models;
+using api_inventory.Entities;
+using api_inventory.Repositories;
+using api_inventory.Interface;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api_inventory.Controllers  
 {  
@@ -16,54 +21,30 @@ namespace api_inventory.Controllers
   
         [Route("api/Version")]
         [HttpGet]
-        public ActionResult Version()  
+        public  async Task<ActionResult<string>> Version()  
         {  
-            var result = Repository.Version();  
-            if (result == null)  
-            {  
-                return NotFound();  
-            }  
-
-            return Ok(result);                   
+            return await Repository.Version();                 
         }  
   
         [Route("api/Store")]
         [HttpGet]
-        public ActionResult Store()  
+        public async Task<ActionResult<string>> Store()  
         {  
-            var result = Repository.Store();  
-            if (result == null)  
-            {  
-                return NotFound();  
-            }  
-
-            return Ok(result);                   
+            return await Repository.Store();  
         }  
 
         [Route("api/Inventory")]
         [HttpGet]
-        public ActionResult Inventory()  
-        {  
-            var result = Repository.Inventory();  
-            if (result == null)  
-            {  
-                return NotFound();  
-            }  
-
-            return Ok(result);           
+        public async Task<ActionResult<List<Inventory>>> Inventory()  
+        {
+            return await Repository.Inventory();    
         }  
   
         [Route("api/Inventory/{Id}")]  
         [HttpGet]
-        public ActionResult Inventory(int Id)  
+        public async Task<ActionResult<Inventory>> Inventory(int Id)  
         {  
-            var result = Repository.Inventory(Id);  
-            if (result == null)  
-            {  
-                return NotFound();  
-            }
-
-            return Ok(result);  
+            return await Repository.Inventory(Id);  
         }  
     }  
 }  

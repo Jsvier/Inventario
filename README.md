@@ -38,6 +38,7 @@ inventory/
         docker build -t web-api-inventory .
         docker run --name web-api-inventory --rm -it -p 8080:80 web-api-inventory
         docker-compose up
+        localhost:5000/hystrix/hystrix.stream
 ```
 
 dotnet new webapp

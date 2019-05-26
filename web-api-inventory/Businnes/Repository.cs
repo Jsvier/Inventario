@@ -1,11 +1,13 @@
-using api_inventory.Model;
-using api_inventory.Models;
-using api_inventory.Oracle;
 using Dapper;  
+using api_inventory.Interface;
+using api_inventory.Models;
 using Microsoft.Extensions.Configuration;  
 using Oracle.ManagedDataAccess.Client;  
-using System;  
-using System.Data;  
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace api_inventory.Repositories  
 {  
@@ -17,128 +19,64 @@ namespace api_inventory.Repositories
             configuration = _configuration;  
         }  
 
-        public object Version()  
-        {  
-            object result = null;  
+        public async Task<string> Version()  
+        { 
+            return configuration.GetSection("Version").Value;        
+        }  
 
-            try  
-            { 
-                result = configuration.GetSection("Version").Value;  
+        public async Task<string> Store()  
+        {  
+            return configuration.GetSection("Store").Value;       
+        }  
+
+        //public async Task<Inventory> Inventory(int INV_NO)  
+        //{  
+           // using (IDbConnection conn = this.GetConnection())
+           // {
+           //     string sQuery = string.Format("SELECT * FROM INV_INVENTORIES WHERE INV_NO = {0}",INV_NO);
+           //     conn.Open();
+           //     var result = await conn.QueryAsync<Inventory>(sQuery);
+           //     return result.FirstOrDefault();
+           // }
+        //}  
+  
+        public async Task<List<Inventory>> Inventory()  
+        {  
+            using (IDbConnection conn = this.GetConnection())
+            {
+                string sQuery = "SELECT INV_NO, DATE_PLANNED, STORE_NO, TIPO, STATUS, DESCRIPCION FROM INV_INVENTORIES";
+                conn.Open();
+                var result = await conn.QueryAsync<Inventory>(sQuery);
+                return result.ToList();
             } 
-            catch (Exception ex)  
-            {  
-                throw ex;  
-            }  
-  
-            return result;             
         }  
-
-        public object Store()  
+  
+        public async Task<Inventory> Inventory(int INV_NO)  
         {  
-            object result = null;  
+            using (IDbConnection conn = this.GetConnection())
+            {
+                conn.Open();
+                var queryParameters = new DynamicParameters();
+                queryParameters.Add("@ID_INV", INV_NO);
 
-            try  
-            { 
-                result = configuration.GetSection("Store").Value;  
+                var result = await conn.QueryAsync<Inventory>(
+                    "InventoryDETAILS",
+                    queryParameters,
+                    commandType: CommandType.StoredProcedure);
+
+                return result.FirstOrDefault();
             } 
-            catch (Exception ex)  
-            {  
-                throw ex;  
-            }  
-  
-            return result;             
-        }  
-
-        public object Inventory(int Id)  
-        {  
-            object result = null;  
-            try  
-            {  
-                var dyParam = new OracleDynamicParameters();  
-                dyParam.Add("ID_INV", OracleDbType.Int32, ParameterDirection.Input, Id);  
-                dyParam.Add("INV_DETAIL_CURSOR", OracleDbType.RefCursor, ParameterDirection.Output);  
-  
-                var conn = this.GetConnection();  
-                if (conn.State == ConnectionState.Closed)  
-                {  
-                    conn.Open();  
-                }  
-  
-                if (conn.State == ConnectionState.Open)  
-                {  
-                    var query = "InventoryDETAILS";  
-  
-                    result = SqlMapper.Query(conn, query, param: dyParam, commandType: CommandType.StoredProcedure);  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                throw ex;  
-            }  
-  
-            return result;  
         }  
   
-        public object Inventory()  
-        {  
-            object result = null; 
-            try  
-            {  
-                var dyParam = new OracleDynamicParameters();  
-  
-                dyParam.Add("INVCURSOR", OracleDbType.RefCursor, ParameterDirection.Output);  
-  
-                var conn = this.GetConnection();  
-                if(conn.State == ConnectionState.Closed)  
-                {  
-                    conn.Open();  
-                }  
-  
-                if (conn.State == ConnectionState.Open)  
-                {  
-                    var query = "GETINVENTORIES";  
-  
-                    result = SqlMapper.Query(conn, query, param: dyParam, commandType: CommandType.StoredProcedure);  
-                }  
+        public async Task<List<Parameter>> OracleConfig()  
+        {
+            using (IDbConnection conn = this.GetConnection())
+            {
+                string sQuery = "SELECT * FROM v$nls_parameters";
+                conn.Open();
+                var result = await conn.QueryAsync<Parameter>(sQuery);
+                return result.ToList();
             }  
-            catch (Exception ex)  
-            {  
-                throw ex;  
-            }  
-  
-            return result;  
-        }  
-  
-        public NLS_Config NLS_Config()  
-        {  
-            NLS_Config result = new NLS_Config(); 
-            try  
-            {  
-           // TODO:RELLENAR
-           //     var dyParam = new OracleDynamicParameters();  
-  
-           //     dyParam.Add("INVCURSOR", OracleDbType.RefCursor, ParameterDirection.Output);  
-  
-            //    var conn = this.GetConnection();  
-            //    if(conn.State == ConnectionState.Closed)  
-             //   {  
-             //       conn.Open();  
-            //    }  
-  
-            //    if (conn.State == ConnectionState.Open)  
-            //    {  
-            //        var query = "GETINVENTORIES";  
-  
-            //        result = SqlMapper.Query(conn, query, param: dyParam, commandType: CommandType.StoredProcedure);  
-             //   }  
-            }  
-            catch (Exception ex)  
-            {  
-                throw ex;  
-            }  
-            
-            result.NLS_LANGUAGE ="BLABLABLA"; 
-            return result;  
         }  
   
         public IDbConnection GetConnection()  

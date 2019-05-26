@@ -1,13 +1,15 @@
+using System.Threading.Tasks;
 using api_inventory.Models;
+using System.Collections.Generic;
 
-namespace api_inventory.Model
+namespace api_inventory.Interface
 {
  public interface IRepository  
     {  
-        object Version();
-        object Store();
-        object Inventory();       
-        object Inventory(int Id);     
-        NLS_Config NLS_Config();
+        Task<string> Version();
+        Task<string> Store();
+        Task<List<Inventory>> Inventory();       
+        Task<Inventory> Inventory(int INV_NO);     
+        Task<List<Parameter>> OracleConfig();
     }   
 }

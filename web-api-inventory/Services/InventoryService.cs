@@ -10,28 +10,27 @@ using api_inventory.Models;
 namespace api_inventory.Services
 {
     //HystrixCommand means no result, HystrixCommand<string> means a string comes back
-    public class InventoryService: HystrixCommand<NLS_Config>
+    public class InventoryService: HystrixCommand<List<Parameter>>
     {      
         public InventoryService(IHystrixCommandOptions options):base(options) {
         
         }
 
-        protected override NLS_Config Run()
+        protected override List<Parameter> Run()
         {
             var client = new HttpClient();
-            var response = client.GetAsync("http://localhost:5000/api/NLS_Config").Result;
+            var response = client.GetAsync("http://localhost:5000/api/OracleConfig").Result;
 
-            var nls_config = response.Content.ReadAsAsync<NLS_Config>().Result;
+            var nls_config = response.Content.ReadAsAsync<List<Parameter>>().Result;
 
             return nls_config;
         }
 
         //fails
-        protected override NLS_Config RunFallback()
+        protected override List<Parameter> RunFallback()
         {
-            NLS_Config nls_config = new NLS_Config();
+            return new List<Parameter>();
             
-            return nls_config;
         }
     }
 }

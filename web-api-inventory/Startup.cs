@@ -19,7 +19,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Steeltoe.CircuitBreaker.Hystrix; //for metrics
 using api_inventory.Helpers;
 using api_inventory.Services;
-using api_inventory.Model;
+using api_inventory.Interface;
 using api_inventory.Repositories;  
 using System.Text;
 
@@ -95,7 +95,7 @@ namespace api_inventory
             services.AddScoped<IUserService, UserService>();
 
             //add QueryCommand to service container, and inject into controller so it gets config values
-            services.AddHystrixCommand<InventoryService>("InventoryGroup", Configuration);
+            services.AddHystrixCommand<InventoryService>("Inventory", Configuration);
             
             //added to get Metrics stream
             services.AddHystrixMetricsStream(Configuration);
