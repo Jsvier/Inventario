@@ -100,6 +100,11 @@ namespace api_inventory
             //added to get Metrics stream
             services.AddHystrixMetricsStream(Configuration);
 
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = "localhost:6379";
+            });
+            
             services.AddMvc(); 
         }
 
