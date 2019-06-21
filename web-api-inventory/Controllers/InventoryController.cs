@@ -1,15 +1,11 @@
-using api_inventory.Services;
 using api_inventory.Models;
-using api_inventory.Entities;
-using api_inventory.Repositories;
 using api_inventory.Interface;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api_inventory.Controllers  
-{  
+namespace api_inventory.Controllers
+{
     [Produces("application/json")]      
     public class InventoryController : Controller  
     {  

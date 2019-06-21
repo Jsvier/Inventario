@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Steeltoe.CircuitBreaker.Hystrix;
 using System.Net.Http; //for Http calls
 using api_inventory.Models;

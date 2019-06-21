@@ -1,18 +1,7 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
@@ -20,7 +9,7 @@ using Steeltoe.CircuitBreaker.Hystrix; //for metrics
 using api_inventory.Helpers;
 using api_inventory.Services;
 using api_inventory.Interface;
-using api_inventory.Repositories;  
+using api_inventory.Repositories;
 using System.Text;
 
 
@@ -100,11 +89,13 @@ namespace api_inventory
             //added to get Metrics stream
             services.AddHystrixMetricsStream(Configuration);
 
-            services.AddDistributedRedisCache(options =>
-            {
-                options.Configuration = "localhost:6379";
+            // add redis cache service
+            services.AddDistributedRedisCache(options => {
+            options.Configuration = Configuration.GetConnectionString("Redis");
+            options.InstanceName = "User_";
             });
-            
+
+            services.AddSession();
             services.AddMvc(); 
         }
 

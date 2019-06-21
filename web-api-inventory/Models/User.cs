@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace api_inventory.Models
@@ -17,5 +16,18 @@ namespace api_inventory.Models
         public string Initial { get; set; }
        
         public string Error { get; set; }
+
+        public long UserID { get; set; }
+    
+        public string Surname { get; set; }
+        
+        public string Email { get; set; }
+    
+    }
+    
+    public enum UserType : byte
+    {
+      person,
+      company
     }
 }

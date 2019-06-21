@@ -1,16 +1,15 @@
-using Dapper;  
+using Dapper;
 using api_inventory.Interface;
 using api_inventory.Models;
-using Microsoft.Extensions.Configuration;  
-using Oracle.ManagedDataAccess.Client;  
+using Microsoft.Extensions.Configuration;
+using Oracle.ManagedDataAccess.Client;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api_inventory.Repositories  
-{  
+namespace api_inventory.Repositories
+{
     public class Repository : IRepository  
     {  
         IConfiguration configuration;  

@@ -1,9 +1,8 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace api_inventory.Models
 {
-     public class Inventory {
+    public class Inventory {
          
         public int INV_NO { get; set; }
         public DateTime DATE_PLANNED { get; set; }
