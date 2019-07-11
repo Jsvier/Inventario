@@ -16,6 +16,7 @@ namespace CacheRepository.Controllers
   
     // GET api/values
     [Route("api/GetUser/{name}")]
+    [HttpGet]  
     public async Task<ActionResult<User>> GetUser(string name)
     {
       User user = new User{Token = "abcz009", Email ="test@test.com", UserID = 0 ,Id= 0, Name="test"};

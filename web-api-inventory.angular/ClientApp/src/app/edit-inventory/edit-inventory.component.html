@@ -1,0 +1,15 @@
+<div class="col-md-6">
+    <h2 class="text-center">Inventario</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="id">id:</label>
+          <input type="id" formControlName="id" placeholder="id" name="id" class="form-control" id="id">
+        </div>
+        <div class="form-group">
+          <label for="description">descripcion:</label>
+          <input formControlName="description" placeholder="description" name="description" class="form-control" id="description">
+        </div>
+
+        <button class="btn btn-success">Update</button>
+        </form>
+  </div>

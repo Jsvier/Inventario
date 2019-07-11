@@ -4,15 +4,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class WorkoutService {
   private headers: HttpHeaders;
-  private accessPointUrl = 'http://localhost:5000/api/inventory';
+  private accessPointUrl = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 
+  public getInventoryById(id) {
+    // Get id inventory data
+    return this.http.get(this.accessPointUrl + '/Inventory/' + id , {headers: this.headers});
+  }
   public get() {
-    // Get all jogging data
-    return this.http.get(this.accessPointUrl, {headers: this.headers});
+    // Get all inventory data
+    return this.http.get(this.accessPointUrl + '/inventory/', {headers: this.headers});
   }
 
   public add(payload) {

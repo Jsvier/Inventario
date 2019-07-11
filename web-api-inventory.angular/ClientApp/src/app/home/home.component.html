@@ -1,5 +1,24 @@
-<ul>
-  <li *ngFor="let item of currentJogging; let i = index">
-    {{item.inV_NO}}: {{item.descripcion}}
-  </li>
-</ul>
+<div class="col-md-6">
+  <h2> Inventario Detalle</h2>
+  <button class="btn btn-danger" (click)="editInventory(1)" style="margin-left: 20px;"> Editar</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Descripcion</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of inventories; let i = index">
+      <td class="hidden">{{item.inV_NO}}</td>
+      <td>{{item.inV_NO}}</td>
+      <td>{{item.descripcion}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteInventory(item)"> Borrar</button>
+        <button class="btn btn-danger" (click)="editInventory(item)" style="margin-left: 20px;"> Editar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
