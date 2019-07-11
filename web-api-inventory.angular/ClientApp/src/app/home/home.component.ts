@@ -9,12 +9,12 @@ import { OnInit } from '@angular/core';
 
 export class HomeComponent implements OnInit {
   ngOnInit(): void {
- 
+
   }
-  public joggingData: Array<any>;
   public currentJogging: any;
 
   constructor (private workoutService: WorkoutService) {
     workoutService.get().subscribe((data: any) => this.currentJogging = data);
+    console.log(this.currentJogging);
   }
 }

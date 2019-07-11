@@ -11,7 +11,7 @@ using api_inventory.Services;
 using api_inventory.Interface;
 using api_inventory.Repositories;
 using System.Text;
-
+using web_api_inventory.repository;
 
 namespace api_inventory
 {
@@ -39,6 +39,9 @@ namespace api_inventory
                                     
             services.AddTransient<IRepository, Repository>();  
             services.AddSingleton<IConfiguration>(Configuration);  
+
+            // Patron repository
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>

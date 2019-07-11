@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class WorkoutService {
   private headers: HttpHeaders;
-  private accessPointUrl: string = 'http://localhost:5000/api/inventory';
+  private accessPointUrl = 'http://localhost:5000/api/inventory';
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
