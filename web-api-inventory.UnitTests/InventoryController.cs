@@ -57,16 +57,16 @@ namespace api_inventory.UnitTests
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     
         }
-        
+
 
         [Fact]
-        public async Task ReturnSuccess_Inventories()
+        public void ReturnSuccess_Inventories()
         {
-            
+
         }
 
         [Fact]
-        public async Task ReturnSuccess_Inventory_ByID()
+        public void ReturnSuccess_Inventory_ByID()
         {
 
         }

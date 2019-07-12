@@ -13,21 +13,21 @@ namespace api_inventory.Controllers
         public InventoryController(IRepository _Repository)  
         {  
             Repository = _Repository;  
-        }  
-  
+        }
+
         [Route("api/Version")]
         [HttpGet]
-        public  async Task<ActionResult<string>> Version()  
-        {  
-            return await Repository.Version();                 
-        }  
-  
+        public ActionResult<string> Version()
+        {
+            return Repository.Version();
+        }
+
         [Route("api/Store")]
         [HttpGet]
-        public async Task<ActionResult<string>> Store()  
-        {  
-            return await Repository.Store();  
-        }  
+        public ActionResult<string> Store()
+        {
+            return Repository.Store();
+        }
 
         [Route("api/Inventory")]
         [HttpGet]
@@ -50,4 +50,4 @@ namespace api_inventory.Controllers
             return await Repository.Remove(Id);  
         }  
     }  
-}  
+}

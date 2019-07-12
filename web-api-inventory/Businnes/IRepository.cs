@@ -6,8 +6,8 @@ namespace api_inventory.Interface
 {
  public interface IRepository  
     {  
-        Task<string> Version();
-        Task<string> Store();
+        string Version();
+        string Store();
         Task<List<Inventory>> Inventory();       
         Task<Inventory> Inventory(int id);       
         Task<int> Remove(int id);     

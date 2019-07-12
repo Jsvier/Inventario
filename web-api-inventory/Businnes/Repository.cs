@@ -16,17 +16,17 @@ namespace api_inventory.Repositories
         public Repository(IConfiguration _configuration)  
         {  
             configuration = _configuration;  
-        }  
+        }
 
-        public async Task<string> Version()  
-        { 
-            return configuration.GetSection("Version").Value;        
-        }  
+        public string Version()
+        {
+            return configuration.GetSection("Version").Value;
+        }
 
-        public async Task<string> Store()  
-        {  
-            return configuration.GetSection("Store").Value;       
-        }  
+        public string Store()
+        {
+            return configuration.GetSection("Store").Value;
+        }
 
         public async Task<Inventory> Inventory(int id)  
         {  
