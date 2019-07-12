@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {Inventory} from '../model/inventory.model';
+import {Inventory} from '../../models/inventory.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { WorkoutService } from '../workout.service';
+import { WorkoutService } from '../../services/workout.service';
 
 @Component({
   selector: 'app-edit-inventory',
@@ -40,7 +40,7 @@ export class EditInventoryComponent implements OnInit {
   }
 
   onSubmit() {
-    //this.userService.updateUser(this.editForm.value)
+    // this.userService.updateUser(this.editForm.value)
      // .pipe(first())
      // .subscribe(
       //  data => {

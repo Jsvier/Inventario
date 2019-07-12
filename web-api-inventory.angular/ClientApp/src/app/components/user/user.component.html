@@ -1,0 +1,14 @@
+<section class="counter">
+  <button (click)="decrement()">-</button>
+  <p>{{ (counter$ | async)?.total }}</p>
+  <button (click)="increment()">+</button>
+  <button (click)="reset()">R</button>
+</section>
+
+<section class="users">
+  <div *ngFor="let user of (users$|async).users" class="user">
+    <span>{{ user.id }}</span>
+    <span>{{ user.name }}</span>
+    <span>{{ user.email }}</span>
+  </div>
+</section>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { WorkoutService } from '../workout.service';
+import { WorkoutService } from '../../services/workout.service';
 import { OnInit } from '@angular/core';
-import {Inventory} from '../model/Inventory.model';
+import {Inventory} from '../../models/Inventory.model';
 import {Router} from '@angular/router';
 
 @Component({
