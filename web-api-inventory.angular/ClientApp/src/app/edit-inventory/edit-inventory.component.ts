@@ -25,11 +25,16 @@ export class EditInventoryComponent implements OnInit {
     }
     this.editForm = this.formBuilder.group({
       id: [],
-      description: ['', Validators.required]
+      datE_PLANNED: ['', Validators.required],
+      storE_NO: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      tipo: [],
+      status: []
     });
+
     this.workoutService.getInventoryById(+userId)
      .subscribe( data => {
-        console.warn(data);
+       console.warn(data);
         this.editForm.setValue(data);
       });
   }

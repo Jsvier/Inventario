@@ -14,6 +14,7 @@ export class WorkoutService {
     // Get id inventory data
     return this.http.get(this.accessPointUrl + '/Inventory/' + id , {headers: this.headers});
   }
+
   public get() {
     // Get all inventory data
     return this.http.get(this.accessPointUrl + '/inventory/', {headers: this.headers});
@@ -24,7 +25,7 @@ export class WorkoutService {
   }
 
   public remove(payload) {
-    return this.http.delete(this.accessPointUrl + '/' + payload.id, {headers: this.headers});
+    return this.http.delete(this.accessPointUrl + '/Remove?id=' + payload);
   }
 
   public update(payload) {

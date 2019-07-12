@@ -38,6 +38,9 @@ inventory/
             dotnet add package MicroNetCore.AspNetCore.ConfigurationExtensions --version 0.0.2-alpha
             dotnet add package AggregateException.Extensions.Handler --version 1.2.0
             dotnet test
+    web-api-inventory.angular
+        web-api-inventory.angular.csproj
+             npm run ng serve
     docker
         docker build -t web-api-inventory .
         docker run --name web-api-inventory --rm -it -p 8080:80 web-api-inventory

@@ -17,19 +17,19 @@ export class HomeComponent implements OnInit {
   public inventories: any;
 
   constructor (private router: Router, private workoutService: WorkoutService) {
-    workoutService.get().subscribe((data: any) => this.inventories = data);
+    this.workoutService.get().subscribe((data: any) => this.inventories = data);
   }
 
   deleteInventory(inventory: Inventory): void {
-   // workoutService.deleteUser(user.id)
-   //   .subscribe( data => {
-    //    this.users = this.users.filter(u => u !== user);
-    //  })
+    this.workoutService.remove(inventory.id)
+      .subscribe( data => {
+        this.inventories = this.inventories.filter(x => x.id !== data);
+      });
   }
 
   editInventory(inventory: Inventory): void {
     localStorage.removeItem('editInventoryId');
-    localStorage.setItem('editInventoryId', inventory.toString());
+    localStorage.setItem('editInventoryId', inventory.id.toString());
     this.router.navigate(['edit-inventory']);
   }
 }

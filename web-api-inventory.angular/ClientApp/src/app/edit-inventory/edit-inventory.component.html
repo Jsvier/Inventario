@@ -2,14 +2,29 @@
     <h2 class="text-center">Inventario</h2>
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="id">id:</label>
+          <label for="id">ID:</label>
           <input type="id" formControlName="id" placeholder="id" name="id" class="form-control" id="id">
         </div>
         <div class="form-group">
-          <label for="description">descripcion:</label>
-          <input formControlName="description" placeholder="description" name="description" class="form-control" id="description">
+          <label for="datE_PLANNED">planificacion:</label>
+          <input formControlName="datE_PLANNED" placeholder="planificacion" name="datE_PLANNED" class="form-control" id="datE_PLANNED">
         </div>
-
-        <button class="btn btn-success">Update</button>
+        <div class="form-group">
+          <label for="storE_NO">Tienda:</label>
+          <input formControlName="storE_NO" placeholder="Tienda" name="storE_NO" class="form-control" id="storE_NO">
+        </div>
+        <div class="form-group">
+          <label for="descripcion">descripcion:</label>
+          <input formControlName="descripcion" placeholder="descripcion" name="descripcion" class="form-control" id="descripcion">
+        </div>
+        <div class="form-group">
+          <label for="tipo">tipo:</label>
+          <input formControlName="tipo" placeholder="tipo" name="tipo" class="form-control" id="tipo">
+        </div>
+        <div class="form-group">
+          <label for="status">Estado:</label>
+          <input formControlName="status" placeholder="Estado" name="status" class="form-control" id="status">
+        </div>
+        <button class="btn btn-success">Actualizar</button>
         </form>
   </div>

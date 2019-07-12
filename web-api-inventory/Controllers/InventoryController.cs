@@ -41,6 +41,13 @@ namespace api_inventory.Controllers
         public async Task<ActionResult<Inventory>> Inventory(int Id)  
         {  
             return await Repository.Inventory(Id);  
+        } 
+
+        [Route("api/Remove")]  
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<int>> Remove(int Id)  
+        {  
+            return await Repository.Remove(Id);  
         }  
     }  
 }  

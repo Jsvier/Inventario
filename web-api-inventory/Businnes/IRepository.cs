@@ -9,7 +9,8 @@ namespace api_inventory.Interface
         Task<string> Version();
         Task<string> Store();
         Task<List<Inventory>> Inventory();       
-        Task<Inventory> Inventory(int INV_NO);     
+        Task<Inventory> Inventory(int id);       
+        Task<int> Remove(int id);     
         Task<List<Parameter>> OracleConfig();
     }   
 }
