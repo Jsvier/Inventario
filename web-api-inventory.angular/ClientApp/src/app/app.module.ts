@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
 
+
 // Servicios
 import { WorkoutService } from './services/workout.service';
 
@@ -25,6 +26,10 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 // Action Redux
 import { CounterState } from './store/counter.state';
 import { UsersState } from './store/users.state';
+
+// Modulos
+import {RatesModule} from './http/rates/rates.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -48,12 +53,15 @@ import { UsersState } from './store/users.state';
     NgxsLoggerPluginModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-    ])
+    ]),
+    RatesModule,
+    NotificationsModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule
   ],
+
   providers: [
     WorkoutService
   ],

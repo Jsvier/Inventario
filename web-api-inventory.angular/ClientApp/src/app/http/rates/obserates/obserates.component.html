@@ -1,0 +1,11 @@
+<!-- async. Dicha función actúa como un pipe en una expresión. Igual que el | json.
+Pero a su izquierda espera que le den algo a lo que suscribirse; espera un observable.
+currentEuroRates$ finalizada en $ por convenio.
+Esa propiedad se rellena en el controlador con el método get, no con los datos futuros, si no con el propio observable.
+-->
+<h2> Currency Observable Rates. </h2>
+<h3> From Euro to the $ world </h3>
+<h4> Currency Observable Rates whitout pipe. </h4>
+<pre>{{ currentEuroRates$ | async | json }}</pre>}
+<h4> Currency Observable Rates whit pipe. </h4>
+<pre>{{ myRates$ | async | json }}</pre>
