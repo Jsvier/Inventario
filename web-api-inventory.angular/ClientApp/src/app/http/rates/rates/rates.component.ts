@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-rates',
-  templateUrl: './rates.component.html',
-  styleUrls: ['./rates.component.css']
+  templateUrl: './rates.component.html'
 })
 export class RatesComponent implements OnInit {
   private urlapi = 'https://api.exchangeratesapi.io/latest';

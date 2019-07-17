@@ -5,8 +5,7 @@ import { map, tap, share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-obserates',
-  templateUrl: './obserates.component.html',
-  styleUrls: ['./obserates.component.css']
+  templateUrl: './obserates.component.html'
 })
 export class ObseratesComponent implements OnInit {
   private ratesApi = 'https://api.exchangeratesapi.io/latest';

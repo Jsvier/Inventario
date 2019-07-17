@@ -6,8 +6,7 @@ import { WorkoutService } from '../../services/workout.service';
 
 @Component({
   selector: 'app-edit-inventory',
-  templateUrl: './edit-inventory.component.html',
-  styleUrls: ['./edit-invnentory.component.css']
+  templateUrl: './edit-inventory.component.html'
 })
 
 export class EditInventoryComponent implements OnInit {

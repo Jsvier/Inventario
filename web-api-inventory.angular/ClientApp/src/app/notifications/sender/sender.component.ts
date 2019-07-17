@@ -3,8 +3,7 @@ import { NotificationsStoreService } from '../notifications-store.service';
 
 @Component({
   selector: 'app-sender',
-  templateUrl: './sender.component.html',
-  styleUrls: ['./sender.component.css']
+  templateUrl: './sender.component.html'
 })
 
 export class SenderComponent implements OnInit {

@@ -18,7 +18,10 @@ inventory/
             dotnet add package Microsoft.Extensions.Caching.Abstractions --version 2.2.0
             dotnet add package Microsoft.Extensions.Caching.Memory --version 2.2.0
             dotnet add package Microsoft.Extensions.Caching.Redis --version 2.2.0
-            dotnet add package Microsoft.Extensions.Caching.SqlServer --version 2.2.0
+            dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 2.2.6
+            dotnet add package AutoMapper --version 8.1.1
+            dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection --version 6.1.1
+            
             dotnet run
     web-api-inventory.UnitTests/
             web-api-inventory.UnitTests.csproj
