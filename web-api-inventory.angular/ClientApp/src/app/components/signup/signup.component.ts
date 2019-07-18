@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Signup } from '../../models/Signup.model';
+import { Signup } from '../../models/signup.model';
 import { AuthService } from '../../services/authservice.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.css']
 })
 
 export class SignupComponent implements OnInit {
@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   signupUser(event) {
     event.preventDefault();
     const target = event.target;
-    const user: Signup = new Signup();
+    var user: Signup = new Signup();
     user.name = target.querySelector('#name').value;
     user.familyName = target.querySelector('#familyName').value;
     user.email = target.querySelector('#email').value;

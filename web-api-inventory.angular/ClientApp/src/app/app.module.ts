@@ -12,7 +12,12 @@ import {EditInventoryComponent} from './components/edit-inventory/edit-inventory
 import {UserComponent} from './components/user/user.component';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/dashboard/profile/profile.component';
+import { AuthService } from './services/authservice.service';
+import { AdminModule } from './components/dashboard/admin.module';
 
 // Servicios
 import { WorkoutService } from './services/workout.service';
@@ -36,7 +41,10 @@ import { NotificationsModule } from './notifications/notifications.module';
     NavMenuComponent,
     HomeComponent,
     EditInventoryComponent,
-    UserComponent
+    UserComponent,
+    SignupComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -58,12 +66,19 @@ import { NotificationsModule } from './notifications/notifications.module';
   ],
   exports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminModule
   ],
 
   providers: [
-    WorkoutService
+    WorkoutService,
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function getBaseUrl() {
+  return document.getElementsByTagName('base')[0].href;
+}
