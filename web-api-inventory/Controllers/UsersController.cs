@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using api_inventory.Services;
-using api_inventory.Models;
+using api_inventory.Model;
 
 namespace api_inventory.Controllers
 {

@@ -1,5 +1,5 @@
  using System;
- using api_inventory.Models;
+ using api_inventory.Model;
  using Microsoft.Extensions.Options;
  using Microsoft.Extensions.Logging;
  using NSubstitute;

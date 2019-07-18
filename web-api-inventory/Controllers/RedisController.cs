@@ -1,4 +1,4 @@
-using api_inventory.Models;
+using api_inventory.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Threading.Tasks;

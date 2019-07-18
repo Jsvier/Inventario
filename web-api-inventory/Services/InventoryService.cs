@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Steeltoe.CircuitBreaker.Hystrix;
 using System.Net.Http; //for Http calls
-using api_inventory.Models;
+using api_inventory.Model;
 
 namespace api_inventory.Services
 {

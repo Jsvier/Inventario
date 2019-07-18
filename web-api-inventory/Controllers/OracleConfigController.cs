@@ -1,4 +1,4 @@
-﻿using api_inventory.Models;
+﻿using api_inventory.Model;
 using api_inventory.Interface;
 using System.Threading.Tasks;
 using System.Collections.Generic;

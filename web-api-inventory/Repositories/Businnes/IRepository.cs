@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using api_inventory.Models;
+using api_inventory.Model;
 using System.Collections.Generic;
 
 namespace api_inventory.Interface

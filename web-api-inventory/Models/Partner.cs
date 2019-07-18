@@ -1,4 +1,4 @@
-namespace api_inventory.Models {
+namespace api_inventory.Model {
     public class Partner {
         public int Id { get; set; }
         public string IdentityId { get; set; }

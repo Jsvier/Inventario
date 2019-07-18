@@ -1,4 +1,4 @@
-using api_inventory.Models;
+using api_inventory.Model;
 using Microsoft.EntityFrameworkCore;
  
 namespace web_api_inventory.repository

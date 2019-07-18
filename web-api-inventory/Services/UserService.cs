@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using api_inventory.Models;
+using api_inventory.Model;
 using api_inventory.Helpers;
 
 namespace api_inventory.Services

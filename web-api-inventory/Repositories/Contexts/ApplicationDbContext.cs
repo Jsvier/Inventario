@@ -1,4 +1,4 @@
-using api_inventory.Models;
+using api_inventory.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

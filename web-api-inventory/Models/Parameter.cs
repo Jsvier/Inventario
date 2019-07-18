@@ -1,4 +1,4 @@
-namespace api_inventory.Models
+namespace api_inventory.Model
 {
     public class Parameter {
          

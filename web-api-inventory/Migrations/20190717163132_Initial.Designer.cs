@@ -131,7 +131,7 @@ namespace api_inventory.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("api_inventory.Models.AppUser", b =>
+            modelBuilder.Entity("api_inventory.Model.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -194,7 +194,7 @@ namespace api_inventory.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("api_inventory.Models.Customer", b =>
+            modelBuilder.Entity("api_inventory.Model.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -215,7 +215,7 @@ namespace api_inventory.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("api_inventory.Models.Partner", b =>
+            modelBuilder.Entity("api_inventory.Model.Partner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,7 +246,7 @@ namespace api_inventory.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("api_inventory.Models.AppUser")
+                    b.HasOne("api_inventory.Model.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -254,7 +254,7 @@ namespace api_inventory.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("api_inventory.Models.AppUser")
+                    b.HasOne("api_inventory.Model.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -267,7 +267,7 @@ namespace api_inventory.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("api_inventory.Models.AppUser")
+                    b.HasOne("api_inventory.Model.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -275,22 +275,22 @@ namespace api_inventory.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("api_inventory.Models.AppUser")
+                    b.HasOne("api_inventory.Model.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("api_inventory.Models.Customer", b =>
+            modelBuilder.Entity("api_inventory.Model.Customer", b =>
                 {
-                    b.HasOne("api_inventory.Models.AppUser", "Identity")
+                    b.HasOne("api_inventory.Model.AppUser", "Identity")
                         .WithMany()
                         .HasForeignKey("IdentityId");
                 });
 
-            modelBuilder.Entity("api_inventory.Models.Partner", b =>
+            modelBuilder.Entity("api_inventory.Model.Partner", b =>
                 {
-                    b.HasOne("api_inventory.Models.AppUser", "OwnerIdentity")
+                    b.HasOne("api_inventory.Model.AppUser", "OwnerIdentity")
                         .WithMany()
                         .HasForeignKey("OwnerIdentityId");
                 });

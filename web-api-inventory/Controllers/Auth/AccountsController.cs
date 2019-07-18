@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
-using api_inventory.Models;
+using api_inventory.Model;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using web_api_inventory.Helpers;
 using web_api_inventory.jwt.repository;
-using web_api_inventory.Models;
+using web_api_inventory.Model.View;
 
-namespace api_inventory.Controllers {
+namespace api_inventory.Controllers
+{
 
     [ApiController]
     [Route ("[controller]")]
@@ -28,16 +28,18 @@ namespace api_inventory.Controllers {
             if (!ModelState.IsValid) {
                 return BadRequest (ModelState);
             }
-                    var userIdentity = _mapper.Map<AppUser> (model);
+            var userIdentity = _mapper.Map<AppUser> (model);
 
-                    var result = await _userManager.CreateAsync (userIdentity, model.Password);
+            userIdentity.UserName= "bablbla"; //TODO: CAMBIAR
+            
+            var result = await _userManager.CreateAsync (userIdentity, model.Password);
 
-            //        if (!result.Succeeded) return new BadRequestObjectResult (ErrorHelper.AddErrorsToModelState (result, ModelState));
+            if (!result.Succeeded) return new BadRequestObjectResult (ErrorHelper.AddErrorsToModelState (result, ModelState));
 
-            //      await _appDbContext.Customers.AddAsync (new Customer { IdentityId = userIdentity.Id, Location = model.Location });
-            //    await _appDbContext.SaveChangesAsync ();
+            await _appDbContext.Customers.AddAsync (new Customer { IdentityId = userIdentity.Id, Location = model.Location });
+            await _appDbContext.SaveChangesAsync ();
 
-            return new OkObjectResult ("Account succesfully created!");
+            return new OkObjectResult ("Cuenta Creada");
         }
     }
 }

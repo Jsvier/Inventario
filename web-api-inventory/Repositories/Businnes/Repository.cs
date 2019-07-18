@@ -1,6 +1,6 @@
 using Dapper;
 using api_inventory.Interface;
-using api_inventory.Models;
+using api_inventory.Model;
 using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;
 using System.Collections.Generic;

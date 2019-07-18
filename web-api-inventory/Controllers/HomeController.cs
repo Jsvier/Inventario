@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using api_inventory.Services;
-using api_inventory.Models;
+using api_inventory.Model;
 using System.Collections.Generic;
 
 namespace api_inventory.Controllers

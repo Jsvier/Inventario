@@ -6,22 +6,26 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Steeltoe.CircuitBreaker.Hystrix;
 using Swashbuckle.AspNetCore.Swagger; //for metrics
+using System;
 using System.Text;
 using api_inventory.Helpers;
 using api_inventory.Interface;
-using api_inventory.Models;
+using api_inventory.Model;
 using api_inventory.Repositories;
 using api_inventory.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using web_api_inventory.Helpers;
+using web_api_inventory.jwt;
 using web_api_inventory.jwt.repository;
-using web_api_inventory.Models;
 using web_api_inventory.repository;
 
 namespace api_inventory {
     public class Startup {
+        private const string SecretKey = "iNivDmHLpUA223sqsfhqGbMRdRj1PVkH"; // todo: get this from somewhere secure
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey (Encoding.ASCII.GetBytes (SecretKey));
+
         public Startup (IConfiguration configuration) {
             Configuration = configuration;
         }
@@ -34,6 +38,7 @@ namespace api_inventory {
 
             services.AddTransient<IRepository, Repository> ();
             services.AddSingleton<IConfiguration> (Configuration);
+            services.AddTransient<IJwtFactory, JwtFactory> ();
 
             // Patron repository
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper> ();
@@ -61,6 +66,11 @@ namespace api_inventory {
             var appSettingsSection = Configuration.GetSection ("AppSettings");
             services.Configure<AppSettings> (appSettingsSection);
 
+            // api user claim policy
+            services.AddAuthorization (options => {
+                options.AddPolicy ("ApiUser", policy => policy.RequireClaim (ConstantJwt.Strings.JwtClaimIdentifiers.Rol, ConstantJwt.Strings.JwtClaims.ApiAccess));
+            });
+
             // Autentificacion EF con JWT
             services.AddDbContext<ApplicationDbJWTContext> (options =>
                 options.UseSqlServer (Configuration.GetConnectionString ("efjwt")));
@@ -77,23 +87,43 @@ namespace api_inventory {
             builder = new IdentityBuilder (builder.UserType, typeof (IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<ApplicationDbJWTContext> ().AddDefaultTokenProviders ();
 
-            // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings> ();
-            var key = Encoding.ASCII.GetBytes (appSettings.Secret);
-            services.AddAuthentication (x => {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            var jwtOptions = Configuration.GetSection (nameof (JwtOptions));
+            services.Configure<JwtOptions> (options => {
+                options.Issuer = jwtOptions[nameof (JwtOptions.Issuer)];
+                options.Audience = jwtOptions[nameof (JwtOptions.Audience)];
+                options.SigningCredentials = new SigningCredentials (_signingKey, SecurityAlgorithms.HmacSha256);
+            });
+
+            var tokenValidationParameters = new TokenValidationParameters {
+                ValidateIssuer = true,
+                ValidIssuer = jwtOptions[nameof (JwtOptions.Issuer)],
+
+                ValidateAudience = true,
+                ValidAudience = jwtOptions[nameof (JwtOptions.Audience)],
+
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = _signingKey,
+
+                RequireExpirationTime = false,
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero
+            };
+
+            // A este punto ya tenemos protegido nuestra API para que implemente autenticación o acceso basado en token. Luego le decimos a ASP.NET Core que lo use en el runtime.
+            services.AddAuthentication (options => {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddJwtBearer (x => {
-                    x.RequireHttpsMetadata = false;
-                    x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey (key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
+                .AddJwtBearer (configureOptions => {
+                    configureOptions.ClaimsIssuer = jwtOptions[nameof (JwtOptions.Issuer)];
+                    configureOptions.TokenValidationParameters = tokenValidationParameters;
+                    configureOptions.SaveToken = true;
                 });
+
+            // Uso de autenticación
+            services.AddAuthorization (options => {
+                options.AddPolicy ("ApiUser", policy => policy.RequireClaim (ConstantJwt.Strings.JwtClaimIdentifiers.Rol, ConstantJwt.Strings.JwtClaims.ApiAccess));
+            });
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService> ();
@@ -153,6 +183,7 @@ namespace api_inventory {
 
             //added
             app.UseHystrixMetricsStream ();
+            app.UseAuthentication ();
         }
     }
 }
