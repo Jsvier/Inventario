@@ -12,7 +12,7 @@ using web_api_inventory.Model.View;
 
 namespace web_api_inventory.Controllers {
     
-    [Authorize (Policy = "ApiUser")]
+//    [Authorize (Policy = "ApiUser")]
     [Route ("api/[controller]")]
     public class AuthController : Controller {
         private readonly UserManager<AppUser> _userManager;

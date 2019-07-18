@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
 
-
 // Servicios
 import { WorkoutService } from './services/workout.service';
 
