@@ -16,14 +16,14 @@ export class AuthService {
   userProfile: UserProfile;
 
   signupUser(user: Signup) {
-    return this.http.post(this.baseUrl + 'api/account', user)
+    return this.http.post('http://localhost:5000/api/account', user)
       .subscribe(
         data => this.router.navigate(['/login'])
       );
   }
 
   login(user: Login) {
-    return this.http.post<Login>(this.baseUrl + 'api/auth/login', user)
+    return this.http.post<Login>('http://localhost:5000/api/auth/login', user)
       .subscribe(
         data => {
           this.setSession(data);
@@ -42,7 +42,7 @@ export class AuthService {
     const authToken = localStorage.getItem('auth_token');
 
     if (this.userProfile == null) {
-      this.http.get<UserProfile>(this.baseUrl + 'api/profile', { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + authToken }) })
+      this.http.get<UserProfile>('http://localhost:5000/api/profile', { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + authToken }) })
         .subscribe(data => {
           this.userProfile = data;
         });

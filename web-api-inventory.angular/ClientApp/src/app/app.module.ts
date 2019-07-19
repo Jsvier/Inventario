@@ -13,15 +13,11 @@ import {UserComponent} from './components/user/user.component';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProfileComponent } from './components/dashboard/profile/profile.component';
-import { AuthService } from './services/authservice.service';
-import { AdminModule } from './components/dashboard/admin.module';
 
 // Servicios
 import { WorkoutService } from './services/workout.service';
-
+import { AuthService } from './services/authservice.service';
 // redux
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -34,6 +30,7 @@ import { UsersState } from './store/users.state';
 // Modulos
 import {RatesModule} from './http/rates/rates.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { AdminModule } from './components/dashboard/admin.module';
 
 @NgModule({
   declarations: [
@@ -42,9 +39,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     HomeComponent,
     EditInventoryComponent,
     UserComponent,
-    SignupComponent,
-    LoginComponent,
-    ProfileComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -62,12 +57,12 @@ import { NotificationsModule } from './notifications/notifications.module';
       { path: '', component: HomeComponent, pathMatch: 'full' },
     ]),
     RatesModule,
-    NotificationsModule
+    //NotificationsModule,
+    AdminModule
   ],
   exports: [
     FormsModule,
-    ReactiveFormsModule,
-    AdminModule
+    ReactiveFormsModule
   ],
 
   providers: [

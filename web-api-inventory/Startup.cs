@@ -14,6 +14,7 @@ using api_inventory.Model;
 using api_inventory.Repositories;
 using api_inventory.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using web_api_inventory.Helpers;
@@ -39,6 +40,8 @@ namespace api_inventory {
             services.AddTransient<IRepository, Repository> ();
             services.AddSingleton<IConfiguration> (Configuration);
             services.AddTransient<IJwtFactory, JwtFactory> ();
+            //TODO:DEPRECADO
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor> ();
 
             // Patron repository
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper> ();
