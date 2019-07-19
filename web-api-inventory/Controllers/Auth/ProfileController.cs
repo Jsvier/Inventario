@@ -22,7 +22,8 @@ using web_api_inventory.jwt.repository;
 using web_api_inventory.Model.View;
 
 namespace web_api_inventory.Controllers {
-    //[Authorize (Policy = "ApiUser")]
+
+  //  [Authorize (Policy = "ApiUser")]
     [Route ("api/[controller]")]
     public class ProfileController : Controller {
         private readonly ClaimsPrincipal _caller;
@@ -35,9 +36,8 @@ namespace web_api_inventory.Controllers {
 
         [HttpGet]
         public async Task<IActionResult> Get () {
-            //  var userId = _caller.Claims.Single (c => c.Type == "id"); 
-            // var customer = await _appDbContext.Customers.Include (c => c.Identity).SingleAsync (c => c.Identity.Id == userId.Value);
-            var customer = new Customer();
+            var userId = "bablbla";     // _caller.Claims.SingleOrDefault (c => c.Type == "id");
+            var customer = new Customer();    // await _appDbContext.Customers.Include (c => c.Identity).SingleAsync (c => c.Identity.Id == userId);
 
             return new OkObjectResult (new {
                 Message = "This is secure API and user data!",

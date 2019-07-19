@@ -123,11 +123,6 @@ namespace api_inventory {
                     configureOptions.SaveToken = true;
                 });
 
-            // Uso de autenticación
-            services.AddAuthorization (options => {
-                options.AddPolicy ("ApiUser", policy => policy.RequireClaim (ConstantJwt.Strings.JwtClaimIdentifiers.Rol, ConstantJwt.Strings.JwtClaims.ApiAccess));
-            });
-
             // configure DI for application services
             services.AddScoped<IUserService, UserService> ();
 

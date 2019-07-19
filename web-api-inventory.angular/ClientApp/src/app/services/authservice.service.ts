@@ -35,7 +35,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('auth_token');
-    localStorage.removeItem('expires_at');
+    localStorage.removeItem('expires_in');
   }
 
   getUserProfile() {
@@ -51,9 +51,10 @@ export class AuthService {
   }
 
   private setSession(authResult) {
+    console.warn(authResult);
     const expiresAt = authResult.expiresIn * 1000 + Date.now();
     localStorage.setItem('id_token', authResult.id);
-    localStorage.setItem('auth_token', authResult.authToken);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('auth_token', authResult.auth_token);
+    localStorage.setItem('expires_in', JSON.stringify(authResult.expires_in.valueOf()));
   }
 }
